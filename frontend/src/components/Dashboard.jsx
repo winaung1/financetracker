@@ -54,20 +54,33 @@ const Dashboard = () => {
   }, []);
 
   const totalIncome = incomeList.reduce((sum, item) => sum + item.amount, 0);
-  const totalExpenses = expensesList.reduce(
+  let totalExpenses = expensesList.reduce(
     (sum, item) => sum + item.amount,
     0
   );
+ // Get today's day (1-31)
+const today = new Date().getDate();
 
-  // console.log(typeof(totalExpenses).toFixed(2))
-  const currentMonth = new Date().getMonth();
-  // const monthlyBills = billsList.filter(
-  //   (bill) => new Date(bill.dueDate).getMonth() === currentMonth
-  // );
-  // const totalMonthlyBills = monthlyBills.reduce(
-  //   (sum, bill) => sum + bill.amount,
-  //   0
-  // );
+
+// Iterate through the billsList to adjust total expenses
+billsList.forEach((bill) => {
+  if (today === parseInt(bill.dueDate, 10)) {
+    totalExpenses -= bill.amount;
+  }
+});
+
+
+  // // console.log(typeof(totalExpenses).toFixed(2))
+  // const currentMonth = new Date().getMonth();
+  // // const monthlyBills = billsList.filter(
+  // //   (bill) => new Date(bill.dueDate).getMonth() === currentMonth
+  // // );
+  // // const totalMonthlyBills = monthlyBills.reduce(
+  // //   (sum, bill) => sum + bill.amount,
+  // //   0
+  // // );
+
+
   const endOfMonthBalance = totalIncome - (totalExpenses);
 
   // Chart data configuration
