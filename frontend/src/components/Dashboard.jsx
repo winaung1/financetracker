@@ -61,14 +61,14 @@ const Dashboard = () => {
 
   // console.log(typeof(totalExpenses).toFixed(2))
   const currentMonth = new Date().getMonth();
-  const monthlyBills = billsList.filter(
-    (bill) => new Date(bill.dueDate).getMonth() === currentMonth
-  );
-  const totalMonthlyBills = monthlyBills.reduce(
-    (sum, bill) => sum + bill.amount,
-    0
-  );
-  const endOfMonthBalance = totalIncome - (totalExpenses + totalMonthlyBills);
+  // const monthlyBills = billsList.filter(
+  //   (bill) => new Date(bill.dueDate).getMonth() === currentMonth
+  // );
+  // const totalMonthlyBills = monthlyBills.reduce(
+  //   (sum, bill) => sum + bill.amount,
+  //   0
+  // );
+  const endOfMonthBalance = totalIncome - (totalExpenses);
 
   // Chart data configuration
   const chartOptions = {
@@ -348,7 +348,7 @@ const Dashboard = () => {
             <thead>
               <tr>
                 <th className="p-3">Name</th>
-                <th className="p-3">Due Date</th>
+                <th className="p-3">Due Date (Monthly)</th>
                 <th className="p-3">Amount</th>
                 <th className="p-3">Actions</th>
               </tr>
@@ -357,7 +357,7 @@ const Dashboard = () => {
               {billsList.map((item, index) => (
                 <tr key={index} className="border-b border-gray-700">
                   <td className="p-3">{item.name}</td>
-                  <td className="p-3">{new Date(item.dueDate).toLocaleDateString()}</td>
+                  <td className="p-3">{item.dueDate}</td>
 
 
                   <td className="p-3">${item.amount?.toFixed(2)}</td>
@@ -459,7 +459,7 @@ const Dashboard = () => {
               className="form-input mb-4"
             />
             <input
-              type="date"
+              type="text"
               value={updatedBill.dueDate}
               onChange={(e) =>
                 setUpdatedBill({ ...updatedBill, dueDate: e.target.value })

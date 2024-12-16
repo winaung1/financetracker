@@ -71,9 +71,10 @@ const AddBill = ({ onBillAdded }) => {
         className="block w-full p-2 mb-2 border rounded"
       />
       <input
-        type="date"
+        type="text"
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)}
+        placeholder='Due on month...'
         className="block w-full p-2 mb-2 border rounded"
       />
       <select
