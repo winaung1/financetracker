@@ -58,16 +58,20 @@ const Dashboard = () => {
     (sum, item) => sum + item.amount,
     0
   );
- // Get today's day (1-31)
+// Get today's day (1-31)
 const today = new Date().getDate();
 
+// Calculate the total amount needed for today's due bills
+let needToHave = 0;
 
-// Iterate through the billsList to adjust total expenses
+// Iterate through the billsList
 billsList.forEach((bill) => {
   if (today === parseInt(bill.dueDate, 10)) {
-    totalExpenses -= bill.amount;
+    needToHave = totalExpenses - bill.amount; // Sum up the amounts due today
   }
 });
+
+
 
 
   // // console.log(typeof(totalExpenses).toFixed(2))
@@ -250,20 +254,24 @@ billsList.forEach((bill) => {
     <div className="p-4">
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div className="linear-purple text-white rounded-2xl p-4">
-          <h2 className="text-xl text-gray-200">Income</h2>
+          <h2 className="text-xl text-gray-200">Total Income</h2>
           <p className="text-3xl py-2">${totalIncome?.toFixed(2)}</p>
         </div>
         <div className="linear-red text-white rounded-2xl p-4">
-          <h2 className="text-xl text-gray-200">Expenses</h2>
+          <h2 className="text-xl text-gray-200">Total Expenses</h2>
           <p className="text-3xl py-2">${totalExpenses.toFixed(2)}</p>
         </div>
         {/* <div className="linear-orange text-white rounded-2xl p-4">
           <h2 className="text-xl text-gray-200">Monthly Bills</h2>
           <p className="text-3xl py-2">${totalMonthlyBills.toFixed(2)}</p>
         </div> */}
-        <div className="linear-gray text-gray-800 rounded-2xl p-4">
-          <h2 className="text-xl text-gray-700">Monthly Balance</h2>
+        <div className="bg-green-500 text-gray-800 rounded-2xl p-4">
+          <h2 className="text-xl text-gray-700">Total Monthly Balance</h2>
           <p className="text-3xl py-2">${endOfMonthBalance?.toFixed(2)}</p>
+        </div>
+        <div className="linear-gray text-gray-800 rounded-2xl p-4">
+          <h2 className="text-xl text-gray-700">Total Need To Have Balance</h2>
+          <p className="text-3xl py-2">${needToHave}</p>
         </div>
       </div>
 
