@@ -5,9 +5,11 @@ import AddBill from "./components/AddBill";
 import Dashboard from "./components/Dashboard";
 import { Sidebar } from "./components/Sidebar";
 import IncomeCalculator from "./components/IncomeCalculator";
+import { CiMenuFries } from "react-icons/ci";
 
 function App() {
   const [activeTab, setActiveTab] = useState('Dashboard'); // Default to Dashboard
+  const [showMenu, setShowMenu] = useState(false); // Default to Dashboard
 
   // Handler to toggle between Dashboard and Payments views
   const handleTabChange = (tab) => {
@@ -16,8 +18,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#101419] p-4 ">
+      <button onClick={() => setShowMenu(!showMenu)} className="text-white text-3xl pb-4"><CiMenuFries/></button>
       <div className="flex">
-        <div className="hidden lg:flex w-80 ">
+        <div className={`${showMenu ? "flex w-80 " : "hidden"}`}>
         <Sidebar onTabChange={handleTabChange} />
         </div>
         <div className="w-full">
