@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.linear-purple{
+  background: rgb(97,73,211);
+background: linear-gradient(118deg, rgba(97,73,211,1) 0%, rgba(77,32,150,1) 100%);
+}
+.linear-red{
+  background: rgb(211,83,73);
+background: linear-gradient(118deg, rgba(211,83,73,1) 0%, rgba(124,41,36,1) 89%);
+}
+.linear-orange{
+  background: rgb(211,152,73);
+background: linear-gradient(118deg, rgba(211,152,73,1) 0%, rgba(138,85,46,1) 89%);
+}
+
+.linear-gray{
+  background: rgb(191,191,191);
+background: linear-gradient(118deg, rgba(191,191,191,1) 0%, rgba(148,148,148,1) 89%);
+}
